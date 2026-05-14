@@ -1,19 +1,20 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import Navbar from "components/Navbar/Navbar";
+import Footer from "components/Footer/Footer";
+import Article from "./pages/Article/Article";
+import ArticleList from "./pages/ArticleList/ArticleList";
+import Editor from "./pages/Editor/Editor";
+import LoginRegister from "./pages/LoginRegister/LoginRegister";
+import Logout from "./pages/Logout/Logout";
+import Profile from "./pages/Profile/Profile";
+import Settings from "./pages/Settings/Settings";
 
-import Article from "./Article";
-import ArticleList from "./pages/ArticleList";
-import Editor from "./Editor";
-import LoginRegister from "./LoginRegister";
-import Logout from "./Logout";
-import Profile from "./Profile";
-import Settings from "./Settings";
-import MainLayout from "layouts/MainLayout";
-
-function App() {
+function App(): React.ReactElement {
   return (
     <Router>
-      <MainLayout>
+      <Navbar />
+      <main>
         <Switch>
           <Route path="/editor" exact component={Editor} />
           <Route path="/editor/:slug" exact component={Editor} />
@@ -23,10 +24,11 @@ function App() {
           <Route path="/profile/:username/favorites" exact component={Profile} />
           <Route path="/register" exact component={LoginRegister} />
           <Route path="/settings" exact component={Settings} />
-          <Route path="/:slug" exact component={Article} />
+          <Route path="/article/:slug" exact component={Article} />
           <Route path="/" component={ArticleList} />
         </Switch>
-      </MainLayout>
+      </main>
+      <Footer />
     </Router>
   );
 }
